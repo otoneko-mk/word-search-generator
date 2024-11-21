@@ -1,14 +1,9 @@
 import random
 import csv
+import os
 
 # 単語リスト
-words = [
-    "TICAD", "AU", "NEPAD", "EAC", "ECOWAS", "COMESA",
-    "Sahara", "Nile", "Kilimanjaro", "Victoria", "Savanna",
-    "Kenya", "Ghana", "Egypt", "Johannesburg", "AddisAbaba",
-    "Ubuntu", "Zulu", "MansaMusa", "Pharaoh", "Kente",
-    "Elephant", "Baobab", "Cheetah", "Giraffe", "Lion"
-]
+words = []
 
 # グリッドサイズ
 grid_size = 15
@@ -55,8 +50,11 @@ for row in range(grid_size):
         if grid[row][col] == ' ':
             grid[row][col] = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
+# スクリプトのパスを取得して同じディレクトリに保存
+script_dir = os.path.dirname(os.path.abspath(__file__))
+csv_file_path = os.path.join(script_dir, "word-search.csv")
+
 # CSVファイルにグリッドを出力する
-csv_file_path = "word_search_africa.csv"
 with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerows(grid)
